@@ -8,10 +8,10 @@
 
     <fragment
         android:id="@+id/fragment"
+        android:name="co.kpham.ilovezappos.orderBookFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-
     </fragment>
 
     <android.support.design.widget.BottomNavigationView
