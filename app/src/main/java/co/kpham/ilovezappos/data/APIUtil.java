@@ -1,4 +1,4 @@
-package co.kpham.ilovezappos;
+package co.kpham.ilovezappos.data;
 
 /**
  * Created by Kito Pham on 9/9/2017.

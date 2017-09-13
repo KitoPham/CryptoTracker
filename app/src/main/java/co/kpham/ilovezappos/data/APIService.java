@@ -1,4 +1,4 @@
-package co.kpham.ilovezappos;
+package co.kpham.ilovezappos.data;
 
 /**
  * Created by Kito Pham on 9/9/2017.
@@ -7,6 +7,7 @@ import android.util.Log;
 
 import java.util.List;
 
+import co.kpham.ilovezappos.BitCoinPOJO;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

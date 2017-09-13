@@ -8,12 +8,6 @@
     android:orientation="vertical"
     tools:context="co.kpham.ilovezappos.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,32 +20,29 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
                     android:layout_weight="1"
-                    android:text="Bids" />
+                    android:text="@string/bids" />
 
                 <TextView
-                    android:id="@+id/textView2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Amount" />
+                    android:text="@string/amount" />
 
                 <TextView
-                    android:id="@+id/textView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Value" />
+                    android:text="@string/value" />
 
             </LinearLayout>
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:paddingBottom="50dp"
                 android:paddingEnd="50dp"
@@ -67,22 +58,66 @@
                     android:orientation="vertical">
 
                     <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recycleView"
+                        android:id="@+id/bidRecycleView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_weight="1"
+                    android:text="@string/asks" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/amount" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/value" />
+
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:paddingBottom="50dp"
+                android:paddingEnd="50dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingStart="50dp"
+                android:paddingTop="10dp"
+                tools:ignore="ObsoleteLayoutParam">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/askRecycleView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </LinearLayout>
             </ScrollView>
 
         </LinearLayout>
-
-    </FrameLayout>
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
-        app:menu="@menu/navigation" />
 
 </LinearLayout>

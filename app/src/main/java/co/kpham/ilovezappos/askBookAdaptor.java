@@ -14,13 +14,12 @@ import co.kpham.ilovezappos.data.fileClient;
  * Created by Kito Pham on 9/9/2017.
  */
 
-public class OrderBookAdaptor extends RecyclerView.Adapter<OrderBookAdaptor.ViewHolder> {
+public class askBookAdaptor extends RecyclerView.Adapter<askBookAdaptor.ViewHolder> {
 
-    public String dataset;
+    public static String dataset;
     private Context mContext;
 
-    public OrderBookAdaptor(String s){
-        dataset = s;
+    public askBookAdaptor(){
     }
 
     @Override
@@ -45,11 +44,7 @@ public class OrderBookAdaptor extends RecyclerView.Adapter<OrderBookAdaptor.View
 
     public int getItemCount(){
         try {
-            if (BitStampSingleton.getData(dataset).size() >= 20){
-                return 20;
-            } else {
-                return BitStampSingleton.getData(dataset).size();
-            }
+            return BitStampSingleton.getData(dataset).size();
         } catch(NullPointerException e) {
             Log.d("OrderBookAdaptor", "getItemCount: error to display");
             return 0;
@@ -60,7 +55,7 @@ public class OrderBookAdaptor extends RecyclerView.Adapter<OrderBookAdaptor.View
         BitStampSingleton.orderBookResult = response;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView bid;
         public TextView amount;
