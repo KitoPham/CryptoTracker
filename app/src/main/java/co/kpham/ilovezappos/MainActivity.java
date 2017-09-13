@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -17,18 +18,21 @@ public class MainActivity extends AppCompatActivity {
     private static BitStampSingleton singleton;
     private TextView mTextMessage;
     private FragmentManager fm;
+    private BottomNavigationView navigationView;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
+        navigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         fm = getFragmentManager();
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fr;
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     };
     private void changeFrags(Fragment fr){
-        Log.d("Process", "changeFrags: fragment changing to " + fr);
+        Log.d("Process", "changeFrags: fragment transaction: " + fr);
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragment, fr);
         fragmentTransaction.commit();
