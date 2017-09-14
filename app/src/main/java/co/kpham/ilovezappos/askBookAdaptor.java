@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.List;
 
-import co.kpham.ilovezappos.data.fileClient;
+import co.kpham.ilovezappos.POJOS.BitCoinPOJO;
 
 /**
  * Created by Kito Pham on 9/9/2017.

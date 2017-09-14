@@ -1,4 +1,4 @@
-package co.kpham.ilovezappos;
+package co.kpham.ilovezappos.POJOS;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

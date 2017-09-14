@@ -3,15 +3,10 @@ package co.kpham.ilovezappos;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
+
+import co.kpham.ilovezappos.POJOS.BitCoinPOJO;
+import co.kpham.ilovezappos.POJOS.PricePOJO;
 
 /**
  * Created by Kito Pham on 9/10/2017.
@@ -20,6 +15,7 @@ import java.util.List;
 public class BitStampSingleton {
     private static BitStampSingleton singleton;
     public static BitCoinPOJO orderBookResult = null;
+    public static List<PricePOJO> priceResult = null;
 
 
     public static BitStampSingleton getInstance(){

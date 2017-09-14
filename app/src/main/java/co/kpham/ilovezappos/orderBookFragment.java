@@ -1,6 +1,7 @@
 package co.kpham.ilovezappos;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
@@ -10,13 +11,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
+import co.kpham.ilovezappos.POJOS.BitCoinPOJO;
 import co.kpham.ilovezappos.data.APIService;
 import co.kpham.ilovezappos.data.APIUtil;
 import co.kpham.ilovezappos.data.fileClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 /**
  * Created by Kito Pham on 9/12/2017.
@@ -44,39 +50,46 @@ public class orderBookFragment extends Fragment {
         bidBookAdapter = new OrderBookAdaptor("Bids");
         askBookAdapter = new OrderBookAdaptor("Asks");
         renderTable();
-        loadOrderBook();
+        loadOrderBook(getView().getContext());
     }
 
     public void renderTable(){
-        Log.d("Process", "renderTable: starting to read file" );
-        fileClient.readFile(getView().getContext());
-        Log.d("Process", "renderTable: file read" );
+        try {
+            Log.d("Process", "renderTable: starting to read file");
+            fileClient.readFile(getView().getContext(), "OrderBook");
+            Log.d("Process", "renderTable: file read");
 
-        bidRecyclerView = (RecyclerView) getView().findViewById(R.id.bidRecycleView);
-        RecyclerView.LayoutManager bidLayoutManager = new LinearLayoutManager(getView().getContext());
-        bidRecyclerView.setLayoutManager(bidLayoutManager);
-        bidRecyclerView.setAdapter(bidBookAdapter);
-        bidRecyclerView.setHasFixedSize(true);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getView().getContext(), DividerItemDecoration.VERTICAL);
-        bidRecyclerView.addItemDecoration(itemDecoration);
+            bidRecyclerView = (RecyclerView) getView().findViewById(R.id.bidRecycleView);
+            RecyclerView.LayoutManager bidLayoutManager = new LinearLayoutManager(getView().getContext());
+            bidRecyclerView.setLayoutManager(bidLayoutManager);
+            bidRecyclerView.setAdapter(bidBookAdapter);
+            bidRecyclerView.setHasFixedSize(true);
+            RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getView().getContext(), DividerItemDecoration.VERTICAL);
+            bidRecyclerView.addItemDecoration(itemDecoration);
 
-        askRecyclerView = (RecyclerView) getView().findViewById(R.id.askRecycleView);
-        RecyclerView.LayoutManager askLayoutManager = new LinearLayoutManager(getView().getContext());
-        askRecyclerView.setLayoutManager(askLayoutManager);
-        askRecyclerView.setAdapter(askBookAdapter);
-        askRecyclerView.setHasFixedSize(true);
-        askRecyclerView.addItemDecoration(itemDecoration);
+            askRecyclerView = (RecyclerView) getView().findViewById(R.id.askRecycleView);
+            RecyclerView.LayoutManager askLayoutManager = new LinearLayoutManager(getView().getContext());
+            askRecyclerView.setLayoutManager(askLayoutManager);
+            askRecyclerView.setAdapter(askBookAdapter);
+            askRecyclerView.setHasFixedSize(true);
+            askRecyclerView.addItemDecoration(itemDecoration);
+            getView().findViewById(R.id.tableLayout).setVisibility(View.VISIBLE);
+        } catch (NullPointerException e){
+            //do nothing
+        }
     }
-    public void loadOrderBook() {
+    public void loadOrderBook(final Context context) {
         mService.getBids().enqueue(new Callback<BitCoinPOJO>() {
             @Override
             public void onResponse(Call<BitCoinPOJO> call, Response<BitCoinPOJO> response) {
 
                 if(response.isSuccessful()) {
                     Log.d("Process", "loadOrderBook: posts loaded from API");
-                    fileClient.writeFile(response.body(), getView().getContext());
+                    fileClient.writeFile(response.body(), context, "response");
                     Log.d("Process", "loadOrderBook: writing to file");
+                    ProgressBar progress = (ProgressBar) getView().findViewById(R.id.progressBar);
                     renderTable();
+                    progress.setVisibility(GONE);
                 }else {
                     int statusCode  = response.code();
                     Log.d("Process", "onResponse: " + statusCode);

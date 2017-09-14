@@ -11,6 +11,8 @@ import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView = (BottomNavigationView) findViewById(R.id.navigation);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         fm = getFragmentManager();
+        changeFrags(new orderBookFragment());
 
     }
 
@@ -40,25 +43,25 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     fr = new orderBookFragment();
                     changeFrags(fr);
-                    return true;
+                    break;
                 case R.id.navigation_graph:
                     fr = new graphFragment();
                     changeFrags(fr);
-                    return true;
+                    break;
                 case R.id.navigation_notifications:
                     fr= new notifFragment();
                     changeFrags(fr);
-                    return true;
+                    break;
             }
-            return false;
+            return true;
         }
 
     };
     private void changeFrags(Fragment fr){
         Log.d("Process", "changeFrags: fragment transaction: " + fr);
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment, fr);
-        fragmentTransaction.commit();
+        fm.beginTransaction()
+            .replace(R.id.fragment_frame, fr)
+            .commit();
         Log.d("Process", "changeFrags: fragmentTransaction finished");
     }
 
