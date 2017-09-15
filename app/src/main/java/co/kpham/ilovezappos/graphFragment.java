@@ -71,11 +71,14 @@ public class graphFragment extends Fragment {
             }
 
             LineDataSet dataSet = new LineDataSet(entries, "Graph"); // add entries to dataset
-            dataSet.setColor(Color.YELLOW);
+            dataSet.setColor(Color.RED);
+            dataSet.setFillColor(Color.RED);
             dataSet.setValueTextColor(Color.BLACK); // styling, ...
 
             LineData lineData = new LineData(dataSet);
             chart.setData(lineData);
+            chart.getDescription().setEnabled(false);
+            chart.getLegend().setEnabled(false);
             chart.invalidate(); // refresh
         } catch (NullPointerException e){
             //do nothing
