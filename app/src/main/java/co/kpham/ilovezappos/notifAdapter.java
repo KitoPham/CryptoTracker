@@ -18,6 +18,8 @@ import java.util.List;
  * Created by Kito Pham on 9/14/2017.
  */
 
+
+//Fills up the notification table with past notifications stored in a local file
 public class notifAdapter extends RecyclerView.Adapter<notifAdapter.ViewHolder>{
 
     Context context;
@@ -48,6 +50,7 @@ public class notifAdapter extends RecyclerView.Adapter<notifAdapter.ViewHolder>{
     }
 
     @Override
+    //Sets value of each table cell of the notification table
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
 
         TextView date = viewHolder.date;

@@ -45,6 +45,8 @@ public class notifFragment extends Fragment {
                 "co.kpham.ilovezappos", Context.MODE_PRIVATE);
 
         //prefs.edit().remove("price");
+
+        //updates preference for notification threshold based on the text
         price = (EditText) getView().findViewById(R.id.notificationPrice);
         price.setText(prefs.getString("price", "4000"));
         prefs.edit().putString("price", price.getText().toString()).commit();
@@ -68,8 +70,8 @@ public class notifFragment extends Fragment {
         renderNotificationsTable();
     }
 
+    //creates table
     public void renderNotificationsTable(){
-
         fileClient.readFile(getView().getContext(), "notifs");
 
         notifRecyclerView = (RecyclerView) getView().findViewById(R.id.notifRecycler);

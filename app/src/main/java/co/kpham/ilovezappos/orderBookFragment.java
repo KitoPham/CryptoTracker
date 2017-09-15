@@ -53,6 +53,7 @@ public class orderBookFragment extends Fragment {
         loadOrderBook(getView().getContext());
     }
 
+    //loads the two tables, ask and bid.
     public void renderTable(){
         try {
             Log.d("Process", "renderTable: starting to read file");
@@ -78,6 +79,8 @@ public class orderBookFragment extends Fragment {
             Log.d("Process:", "error with rendering table");
         }
     }
+
+    //retrofit api call to update data
     public void loadOrderBook(final Context context) {
         mService.getBids().enqueue(new Callback<BitCoinPOJO>() {
             @Override

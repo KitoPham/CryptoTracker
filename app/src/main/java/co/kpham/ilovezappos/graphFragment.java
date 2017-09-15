@@ -51,6 +51,8 @@ public class graphFragment extends Fragment {
     }
 
     @Override
+    //Renders graph from locally stored file
+    //updates local file through background api call
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mService = APIUtil.getAPIService();
@@ -85,6 +87,7 @@ public class graphFragment extends Fragment {
         }
     }
 
+    //Background api call through retrofit, that overwrites local file when finished
     public void loadPrices(final Context context) {
         mService.getPrice().enqueue(new Callback<List<PricePOJO>>(){
             @Override

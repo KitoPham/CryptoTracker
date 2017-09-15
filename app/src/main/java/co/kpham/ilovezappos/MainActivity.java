@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+    //Calls a service receiver to run api calls hourly in the background
+    //sets up navigation bar for usage and creates default fragment at orderbook
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //changes fragments when navigation bar is selected
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -85,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
+
+    //fragment change to passed in fragment
     private void changeFrags(Fragment fr){
         Log.d("Process", "changeFrags: fragment transaction: " + fr);
         fm.beginTransaction()

@@ -18,6 +18,7 @@ import co.kpham.ilovezappos.POJOS.TickerPOJO;
  */
 
 public class BitStampSingleton {
+
     private static BitStampSingleton singleton;
     public static BitCoinPOJO orderBookResult = null;
     public static List<PricePOJO> priceResult = null;
