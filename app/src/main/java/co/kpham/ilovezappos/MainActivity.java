@@ -15,6 +15,16 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.firebase.jobdispatcher.Constraint;
+import com.firebase.jobdispatcher.FirebaseJobDispatcher;
+import com.firebase.jobdispatcher.GooglePlayDriver;
+import com.firebase.jobdispatcher.Job;
+import com.firebase.jobdispatcher.Lifetime;
+import com.firebase.jobdispatcher.Trigger;
+
+import co.kpham.ilovezappos.data.myJobService;
+import co.kpham.ilovezappos.data.priceReceiver;
+
 public class MainActivity extends AppCompatActivity {
 
     private static BitStampSingleton singleton;
@@ -27,6 +37,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
+
+        priceReceiver receiver = new priceReceiver();
+        receiver.startReceiver(getApplicationContext());
+        /*
+        FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(getApplicationContext()));
+        Job myJob = dispatcher.newJobBuilder()
+                .setService(myJobService.class) // the JobService that will be called
+                .setTag("notificationCall") // uniquely identifies the job
+                .setRecurring(true)
+                .setTrigger(Trigger.executionWindow(5, 5 * 60))
+                .setReplaceCurrent(true)
+                .setLifetime(Lifetime.FOREVER)
+                .build();
+        dispatcher.mustSchedule(myJob);
+        */
+
+
         navigationView = (BottomNavigationView) findViewById(R.id.navigation);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         fm = getFragmentManager();

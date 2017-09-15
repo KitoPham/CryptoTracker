@@ -39,9 +39,9 @@ public class fileClient {
                 BitStampSingleton.orderBookResult = mapper.readValue(new File(context.getFilesDir() +"response.json"), BitCoinPOJO.class);
             } else if (type.equals("Price")){
                 BitStampSingleton.priceResult = mapper.readValue(new File(context.getFilesDir() +"prices.json"), new TypeReference<List<PricePOJO>>(){});
-                Log.d("FileClient", "readPrice: " + BitStampSingleton.priceResult);
+                //Log.d("FileClient", "readPrice: " + BitStampSingleton.priceResult);
             }
-            Log.d("fileClient", "readAsk:" + BitStampSingleton.orderBookResult.getAsks());
+            //Log.d("fileClient", "readAsk:" + BitStampSingleton.orderBookResult.getAsks());
         } catch (IOException e) {
             e.printStackTrace();
         }

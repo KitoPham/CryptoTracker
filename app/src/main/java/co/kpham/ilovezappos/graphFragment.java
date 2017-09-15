@@ -101,7 +101,7 @@ public class graphFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<PricePOJO>> call, Throwable t) {
-                Log.d("Process", "error loading from API");
+                Log.d("Process:graph", "error loading from API");
             }
         });
     }

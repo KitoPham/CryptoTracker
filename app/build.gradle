@@ -43,5 +43,8 @@ dependencies {
             [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.4.1']
     )
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    compile 'com.firebase:firebase-jobdispatcher:0.8.1'
+    compile "com.google.android.gms:play-services-gcm:11.0.4"
     testCompile 'junit:junit:4.12'
+
 }

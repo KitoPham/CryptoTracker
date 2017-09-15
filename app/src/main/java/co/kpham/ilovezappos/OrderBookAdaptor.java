@@ -49,6 +49,8 @@ public class OrderBookAdaptor extends RecyclerView.Adapter<OrderBookAdaptor.View
         valueText.setText(Double.toString(Math.round(bidValue * amountValue * 100.0)/100.0));
         if (position % 2 == 1) {
             row.setBackgroundColor(Color.parseColor("#D0ECFD"));
+        } else {
+            row.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
     }
 

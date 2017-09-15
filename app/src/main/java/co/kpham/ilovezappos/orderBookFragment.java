@@ -75,7 +75,7 @@ public class orderBookFragment extends Fragment {
             askRecyclerView.addItemDecoration(itemDecoration);
             getView().findViewById(R.id.tableLayout).setVisibility(View.VISIBLE);
         } catch (NullPointerException e){
-            //do nothing
+            Log.d("Process:", "error with rendering table");
         }
     }
     public void loadOrderBook(final Context context) {
@@ -87,9 +87,7 @@ public class orderBookFragment extends Fragment {
                     Log.d("Process", "loadOrderBook: posts loaded from API");
                     fileClient.writeFile(response.body(), context, "response");
                     Log.d("Process", "loadOrderBook: writing to file");
-                    ProgressBar progress = (ProgressBar) getView().findViewById(R.id.progressBar);
                     renderTable();
-                    progress.setVisibility(GONE);
                 }else {
                     int statusCode  = response.code();
                     Log.d("Process", "onResponse: " + statusCode);
@@ -99,7 +97,7 @@ public class orderBookFragment extends Fragment {
 
             @Override
             public void onFailure(Call<BitCoinPOJO> call, Throwable t) {
-                Log.d("Process", "error loading from API");
+                Log.d("Process:orderBook", "error loading from API");
             }
         });
     }
