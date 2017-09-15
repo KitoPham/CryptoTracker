@@ -44,10 +44,10 @@ public class BitStampSingleton {
     }
 
 
-    private String getDate(long time) {
+    public static String getDate(long time) {
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
-        cal.setTimeInMillis(time);
-        String date = DateFormat.format("dd-MM-yyyy", cal).toString();
+        cal.setTimeInMillis(time * 1000L);
+        String date = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString();
         return date;
     }
 }

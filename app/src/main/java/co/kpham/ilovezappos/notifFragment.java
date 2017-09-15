@@ -16,6 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import java.io.FileNotFoundException;
+
+import co.kpham.ilovezappos.data.fileClient;
+
 /**
  * Created by Kito Pham on 9/12/2017.
  */
@@ -65,6 +69,8 @@ public class notifFragment extends Fragment {
     }
 
     public void renderNotificationsTable(){
+
+        fileClient.readFile(getView().getContext(), "notifs");
 
         notifRecyclerView = (RecyclerView) getView().findViewById(R.id.notifRecycler);
         RecyclerView.LayoutManager bidLayoutManager = new LinearLayoutManager(getView().getContext());

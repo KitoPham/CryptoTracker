@@ -29,7 +29,7 @@ public class priceReceiver extends WakefulBroadcastReceiver {
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, priceReceiver.class);
         PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, 1, 10000, alarmIntent);
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, 1, AlarmManager.INTERVAL_HOUR, alarmIntent);
 
     }
 

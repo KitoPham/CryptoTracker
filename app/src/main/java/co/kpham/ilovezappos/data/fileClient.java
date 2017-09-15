@@ -40,6 +40,8 @@ public class fileClient {
             } else if (type.equals("Price")){
                 BitStampSingleton.priceResult = mapper.readValue(new File(context.getFilesDir() +"prices.json"), new TypeReference<List<PricePOJO>>(){});
                 //Log.d("FileClient", "readPrice: " + BitStampSingleton.priceResult);
+            } else {
+                BitStampSingleton.notifications = mapper.readValue(new File(context.getFilesDir() +"notifs.json"), new TypeReference<List<List<String>>>(){});
             }
             //Log.d("fileClient", "readAsk:" + BitStampSingleton.orderBookResult.getAsks());
         } catch (IOException e) {

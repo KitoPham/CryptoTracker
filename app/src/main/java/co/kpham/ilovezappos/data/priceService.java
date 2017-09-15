@@ -56,9 +56,10 @@ public class priceService extends IntentService {
                     if(Double.parseDouble(prefs.getString("price", "4000")) > Double.parseDouble(BitStampSingleton.currentPrice.getLast())){
                         sendNotif();
                         List<String> notificationpair = new ArrayList<String>();
-                        notificationpair.add(0, BitStampSingleton.currentPrice.getTimestamp());
+                        notificationpair.add(0, BitStampSingleton.getDate(Long.parseLong(BitStampSingleton.currentPrice.getTimestamp())));
                         notificationpair.add(1,"BitCoin price reached below " + prefs.getString("price", "4000") + " at " + BitStampSingleton.currentPrice.getLast());
                         BitStampSingleton.notifications.add(BitStampSingleton.notifications.size(), notificationpair);
+                        fileClient.writeFile(BitStampSingleton.notifications, getApplicationContext(), "notifs");
                     }
                 }else {
                     int statusCode  = response.code();
